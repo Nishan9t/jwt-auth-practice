@@ -2,6 +2,8 @@ const express = require('express');
 const app= express();
 const cors=require('cors');
 const mongoose= require('mongoose');
+const authRoutes=require('./Routes/AuthRoutes.js')
+const cookieParser=require("cookie-parser");
 
 app.use(cors());
 app.use(express.json());
@@ -18,4 +20,7 @@ mongoose.connect("mongodb://localhost:27017/jwt",{
 app.listen(8000,()=>{
     console.log("Server started on port 8000");
 })
+
+app.use(cookieParser());
+app.use("/",authRoutes);
 
