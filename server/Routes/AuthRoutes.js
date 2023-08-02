@@ -1,8 +1,10 @@
-const {register,login} = require("../Controllers/AuthControllers.js")
+const {register,login} = require("../Controllers/AuthControllers.js");
+const { checkUser } = require("../Middlewares/AuthMiddlewares.js");
 
 const router = require("express").Router();
 
-router.post("/");
+router.post("/",checkUser);
+
 router.post("/register",register)
 router.post("/login",login)
 
