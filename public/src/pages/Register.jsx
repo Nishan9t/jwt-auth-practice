@@ -6,17 +6,39 @@ import axios from "axios";
 export default function Register() {
 
     const [values,setValues] =useState({
-        email:'',
+        email:"",
         password:""
     });
+
+
+    const generateError = (err)=>
+        toast.error(err,{
+            position:"bottom-right",
+        })
+    
 
   
     const handleSubmit=async(e)=>{
         e.preventDefault();
         try{
-            const {data}= await axios.post("http://localhost:4000/register",{
+            const {data}= await axios.post("http://localhost:8000/register",{
               ...values,  
+            },{
+                withCredentials:true,
             });
+            
+            if(data){
+                if(data.errors)
+                {
+                    const {email,password}=data.errors;
+                    if(email) generateError(email);
+                    else if(password) generateError(password);
+                }
+                else{
+
+                }
+
+            }
         }catch(err){
             console.log(err);
         }

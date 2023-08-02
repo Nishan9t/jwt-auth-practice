@@ -3,6 +3,7 @@ import React from 'react'
 import Register from './pages/Register';
 import Secret from './pages/Secret';
 import Login from './pages/Login';
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function App() {
   return (

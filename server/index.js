@@ -5,7 +5,11 @@ const mongoose= require('mongoose');
 const authRoutes=require('./Routes/AuthRoutes.js')
 const cookieParser=require("cookie-parser");
 
-app.use(cors());
+app.use(cors({
+    origin:["http://localhost:3000"],
+    method:["GET","POST"],
+    credentials:true,
+}));
 app.use(express.json());
 
 mongoose.connect("mongodb://localhost:27017/jwt",{
